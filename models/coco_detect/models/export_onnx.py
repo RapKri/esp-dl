@@ -3,9 +3,16 @@ from ultralytics.nn.modules import Detect, Attention
 from ultralytics.engine.exporter import Exporter, try_export, arange_patch
 from ultralytics.utils import LOGGER, __version__, colorstr
 from ultralytics.utils.checks import check_requirements
-from ultralytics.utils.torch_utils import get_latest_opset
+# from ultralytics.utils.torch_utils import get_latest_opset
 import torch
 import onnx
+
+
+def get_latest_opset():
+    """Get the latest supported ONNX opset version."""
+    # For ONNX 1.17.0 and PyTorch 2.8.0+, opset 18 is well supported
+    # You can adjust this based on your target deployment requirements
+    return 17  # Conservative choice that works well with most systems
 
 
 class ESP_Detect(Detect):
@@ -137,11 +144,20 @@ class ESP_YOLO(YOLO):
         )
 
 
-model = ESP_YOLO("yolo11n.pt")
+# Ändere hier den Pfad zu deinem eigenen Modell
+model = ESP_YOLO(r"C:\Users\rapha\Documents\GitHub\esp-dl\OWN_FILES\yolo11n_detect_train2_best.pt")
 for m in model.modules():
     if isinstance(m, Attention):
         m.forward = ESP_Attention.forward.__get__(m)
     if isinstance(m, Detect):
         m.forward = ESP_Detect.forward.__get__(m)
 
-model.export(format="onnx", simplify=True, opset=13, dynamic=False, imgsz=640)
+# Passe die Parameter für ESP32S3 an
+model.export(
+    format="onnx", 
+    simplify=True, 
+    opset=13,           # Konservative Wahl für ESP32 Kompatibilität
+    dynamic=False,      # Statische Eingabegröße für ESP32
+    imgsz=640,          # Anpassen je nach deinen Anforderungen (320, 416, 640, etc.)
+    half=False          # FP32 für bessere Kompatibilität
+)
