@@ -3,8 +3,8 @@
 #include "esp_log.h"
 #include "bsp/esp-bsp.h"
 
-extern const uint8_t feces_jpg_start[] asm("_binary_feces_jpg_start");
-extern const uint8_t feces_jpg_end[] asm("_binary_feces_jpg_end");
+extern const uint8_t espdet_jpg_start[] asm("_binary_espdet_jpg_start");
+extern const uint8_t espdet_jpg_end[] asm("_binary_espdet_jpg_end");
 const char *TAG = "feces_detect";
 
 extern "C" void app_main(void)
@@ -13,7 +13,7 @@ extern "C" void app_main(void)
     ESP_ERROR_CHECK(bsp_sdcard_mount());
 #endif
 
-    dl::image::jpeg_img_t jpeg_img = {.data = (void *)feces_jpg_start, .data_len = (size_t)(feces_jpg_end - feces_jpg_start)};
+    dl::image::jpeg_img_t jpeg_img = {.data = (void *)espdet_jpg_start, .data_len = (size_t)(espdet_jpg_end - espdet_jpg_start)};
     auto img = dl::image::sw_decode_jpeg(jpeg_img, dl::image::DL_IMAGE_PIX_TYPE_RGB888);
 
     ESPDetDetect *detect = new ESPDetDetect();
