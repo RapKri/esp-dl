@@ -48,25 +48,31 @@ def quant_yolo11n(imgsz):
     BATCH_SIZE = 32
     INPUT_SHAPE = [3, imgsz, imgsz]
     DEVICE = "cpu"
-    TARGET = "esp32p4"
+    TARGET = "esp32s3"
     NUM_OF_BITS = 8
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    ONNX_PATH = os.path.join(
-        script_dir, "../../../../models/coco_detect/models/yolo11n.onnx"
-    )
-    ESPDL_MODLE_PATH = os.path.join(
-        script_dir,
-        "../../../../models/coco_detect/models/p4/coco_detect_yolo11n_s8_v1.espdl",
-    )
+    # Original paths:
+    # ONNX_PATH = os.path.join(
+    #     script_dir, "../../../../models/coco_detect/models/yolo11n.onnx"
+    # )
+    # ESPDL_MODLE_PATH = os.path.join(
+    #     script_dir,
+    #     "../../../../models/coco_detect/models/p4/coco_detect_yolo11n_s8_v1.espdl",
+    # )
+    
+    # Custom model paths:
+    ONNX_PATH = r"C:\Users\rapha\Documents\GitHub\esp-dl\OWN_FILES\yolo11n_detect_train2_best.onnx"
+    ESPDL_MODLE_PATH = r"C:\Users\rapha\Documents\GitHub\esp-dl\OWN_FILES\yolo11n_detect_train2_best_quantized.espdl"
 
-    yolo11n_caib_url = "https://dl.espressif.com/public/calib_yolo11n.zip"
-    CALIB_DIR = "calib_yolo11n"
-    urllib.request.urlretrieve(
-        yolo11n_caib_url, "calib_yolo11n.zip", reporthook=report_hook
-    )
+    # yolo11n_caib_url = "https://dl.espressif.com/public/calib_yolo11n.zip"
+    # CALIB_DIR = "calib_yolo11n"
+    CALIB_DIR = r"C:\Users\rapha\Documents\GitHub\esp-dl\OWN_FILES\quant_calib_dataset"
+    # urllib.request.urlretrieve(
+    #     yolo11n_caib_url, "calib_yolo11n.zip", reporthook=report_hook
+    # )
 
-    with zipfile.ZipFile("calib_yolo11n.zip", "r") as zip_file:
-        zip_file.extractall("./")
+    # with zipfile.ZipFile("calib_yolo11n.zip", "r") as zip_file:
+    #     zip_file.extractall("./")
 
     model = onnx.load(ONNX_PATH)
     sim = True
