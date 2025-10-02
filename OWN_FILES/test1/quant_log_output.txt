@@ -1,0 +1,306 @@
+(.venv) PS C:\Users\rapha\Documents\GitHub\esp-dl> & C:\Users\rapha\Documents\GitHub\esp-dl\.venv\Scripts\python.exe c:/Users/rapha/Documents/GitHub/esp-dl/examples/tutorial/how_to_quantize_model/quantize_yolo11n/quantize_onnx_model.py
+
+    ___________ ____        ____  ____  ____
+   / ____/ ___// __ \      / __ \/ __ \/ __ \
+  / __/  \__ \/ /_/ /_____/ /_/ / /_/ / / / /
+ / /___ ___/ / ____/_____/ ____/ ____/ /_/ /
+/_____//____/_/         /_/   /_/    \___\_\
+
+
+[WARNING][PPQ][2025-09-30 18:07:43]:  Unexpected input value of operation /model.11/Resize, recieving "None" at its input 1
+[WARNING][PPQ][2025-09-30 18:07:43]:  Unexpected input value of operation /model.14/Resize, recieving "None" at its input 1
+[18:07:43] PPQ Quantization Fusion Pass Running ...       Finished.
+[18:07:43] PPQ Quantize Simplify Pass Running ...         Finished.
+[18:07:43] PPQ Parameter Quantization Pass Running ...    Finished.
+Calibration Progress(Phase 1): 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 32/32 [00:53<00:00,  1.67s/it]
+Calibration Progress(Phase 2): 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 32/32 [01:49<00:00,  3.43s/it]
+Finished.
+[18:10:29] PPQ Quantization Alignment Pass Running ...    Finished.
+[18:10:29] PPQ Passive Parameter Quantization Running ... Finished.
+--------- Network Snapshot ---------
+Num of Op:                    [219]
+Num of Quantized Op:          [219]
+Num of Variable:              [422]
+Num of Quantized Var:         [422]
+------- Quantization Snapshot ------
+Num of Quant Config:          [684]
+ACTIVATED:                    [257]
+OVERLAPPED:                   [215]
+PASSIVE:                      [194]
+FP32:                         [18]
+Network Quantization Finished.
+Analysing Graphwise Quantization Error(Phrase 1):: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:01<00:00,  1.71s/it]
+Analysing Graphwise Quantization Error(Phrase 2):: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:05<00:00,  5.44s/it] 
+Layer                                        | NOISE:SIGNAL POWER RATIO
+/model.10/m/m.0/ffn/ffn.1/conv/Conv:         | ████████████████████ | 56.830%
+/model.10/m/m.0/attn/proj/conv/Conv:         | ████████████████████ | 56.462%
+/model.10/m/m.0/attn/MatMul_1:               | ███████████████████  | 52.665%
+/model.23/cv3.2/cv3.2.1/cv3.2.1.1/conv/Conv: | ██████████████       | 39.440%
+/model.10/m/m.0/attn/pe/conv/Conv:           | █████████████        | 37.429%
+/model.22/m.0/cv2/conv/Conv:                 | ████████████         | 33.858%
+/model.23/cv3.2/cv3.2.1/cv3.2.1.0/conv/Conv: | ████████████         | 33.768%
+/model.10/m/m.0/attn/MatMul:                 | ████████████         | 33.515%
+/model.10/cv1/conv/Conv:                     | ███████████          | 32.340%
+/model.10/m/m.0/attn/qkv/conv/Conv:          | ███████████          | 32.022%
+/model.23/cv3.2/cv3.2.0/cv3.2.0.1/conv/Conv: | ██████████           | 27.621%
+/model.22/m.0/cv3/conv/Conv:                 | █████████            | 25.103%
+/model.22/cv1/conv/Conv:                     | ████████             | 21.745%
+/model.8/m.0/cv2/conv/Conv:                  | ███████              | 21.350%
+/model.22/m.0/m/m.1/cv2/conv/Conv:           | ███████              | 21.254%
+/model.8/m.0/cv3/conv/Conv:                  | ███████              | 20.055%
+/model.23/cv3.2/cv3.2.0/cv3.2.0.0/conv/Conv: | ███████              | 19.433%
+/model.23/cv3.1/cv3.1.1/cv3.1.1.0/conv/Conv: | ███████              | 19.203%
+/model.23/cv3.1/cv3.1.1/cv3.1.1.1/conv/Conv: | ███████              | 18.763%
+/model.22/cv2/conv/Conv:                     | ███████              | 18.695%
+/model.23/cv3.0/cv3.0.1/cv3.0.1.0/conv/Conv: | ██████               | 18.457%
+/model.8/cv2/conv/Conv:                      | ██████               | 18.151%
+/model.23/cv3.0/cv3.0.1/cv3.0.1.1/conv/Conv: | ██████               | 18.004%
+/model.8/m.0/m/m.1/cv2/conv/Conv:            | ██████               | 17.571%
+/model.8/m.0/m/m.0/cv2/conv/Conv:            | ██████               | 17.364%
+/model.8/m.0/m/m.1/cv1/conv/Conv:            | ██████               | 16.325%
+/model.23/cv3.1/cv3.1.0/cv3.1.0.1/conv/Conv: | ██████               | 16.152%
+/model.10/cv2/conv/Conv:                     | ██████               | 15.954%
+/model.23/cv3.0/cv3.0.0/cv3.0.0.1/conv/Conv: | █████                | 14.990%
+/model.23/cv2.2/cv2.2.0/conv/Conv:           | █████                | 13.276%
+/model.22/m.0/m/m.0/cv2/conv/Conv:           | █████                | 12.965%
+/model.13/cv1/conv/Conv:                     | █████                | 12.876%
+/model.13/cv2/conv/Conv:                     | ████                 | 12.153%
+/model.8/m.0/cv1/conv/Conv:                  | ████                 | 12.098%
+/model.23/cv2.1/cv2.1.1/conv/Conv:           | ████                 | 11.944%
+/model.22/m.0/m/m.0/cv1/conv/Conv:           | ████                 | 11.477%
+/model.23/cv2.2/cv2.2.1/conv/Conv:           | ████                 | 11.134%
+/model.8/m.0/m/m.0/cv1/conv/Conv:            | ████                 | 10.851%
+/model.22/m.0/cv1/conv/Conv:                 | ████                 | 10.563%
+/model.10/m/m.0/ffn/ffn.0/conv/Conv:         | ████                 | 10.445%
+/model.22/m.0/m/m.1/cv1/conv/Conv:           | ████                 | 10.442%
+/model.9/cv2/conv/Conv:                      | ████                 | 10.152%
+/model.13/m.0/cv1/conv/Conv:                 | ███                  | 9.978%
+/model.13/m.0/cv2/conv/Conv:                 | ███                  | 9.785%
+/model.19/m.0/cv2/conv/Conv:                 | ███                  | 9.351%
+/model.23/cv2.1/cv2.1.0/conv/Conv:           | ███                  | 9.084%
+/model.8/cv1/conv/Conv:                      | ███                  | 8.908%
+/model.19/cv1/conv/Conv:                     | ███                  | 8.880%
+/model.20/conv/Conv:                         | ███                  | 7.863%
+/model.23/cv2.0/cv2.0.1/conv/Conv:           | ███                  | 7.827%
+/model.19/cv2/conv/Conv:                     | ███                  | 7.520%
+/model.19/m.0/cv1/conv/Conv:                 | ██                   | 6.574%
+/model.23/cv2.2/cv2.2.2/Conv:                | ██                   | 6.015%
+/model.23/cv2.1/cv2.1.2/Conv:                | ██                   | 5.490%
+/model.6/m.0/cv2/conv/Conv:                  | ██                   | 4.763%
+/model.23/cv3.1/cv3.1.0/cv3.1.0.0/conv/Conv: | ██                   | 4.743%
+/model.16/m.0/cv2/conv/Conv:                 | █                    | 4.268%
+/model.23/cv2.0/cv2.0.0/conv/Conv:           | █                    | 3.947%
+/model.16/m.0/cv1/conv/Conv:                 | █                    | 3.918%
+/model.6/m.0/cv3/conv/Conv:                  | █                    | 3.867%
+/model.17/conv/Conv:                         | █                    | 3.750%
+/model.7/conv/Conv:                          | █                    | 3.571%
+/model.16/cv2/conv/Conv:                     | █                    | 3.219%
+/model.23/cv2.0/cv2.0.2/Conv:                | █                    | 3.134%
+/model.9/cv1/conv/Conv:                      | █                    | 3.121%
+/model.6/cv1/conv/Conv:                      | █                    | 2.993%
+/model.6/m.0/m/m.0/cv2/conv/Conv:            | █                    | 2.845%
+/model.6/cv2/conv/Conv:                      | █                    | 2.719%
+/model.6/m.0/m/m.1/cv1/conv/Conv:            | █                    | 2.569%
+/model.6/m.0/m/m.0/cv1/conv/Conv:            | █                    | 2.543%
+/model.16/cv1/conv/Conv:                     | █                    | 2.401%
+/model.6/m.0/cv1/conv/Conv:                  | █                    | 2.057%
+/model.6/m.0/m/m.1/cv2/conv/Conv:            | █                    | 1.967%
+/model.2/cv2/conv/Conv:                      | █                    | 1.927%
+/model.4/cv1/conv/Conv:                      | █                    | 1.916%
+/model.5/conv/Conv:                          | █                    | 1.779%
+/model.4/cv2/conv/Conv:                      | █                    | 1.549%
+/model.3/conv/Conv:                          |                      | 1.306%
+/model.4/m.0/cv1/conv/Conv:                  |                      | 1.156%
+/model.23/cv3.0/cv3.0.0/cv3.0.0.0/conv/Conv: |                      | 1.004%
+/model.2/cv1/conv/Conv:                      |                      | 0.913%
+/model.23/cv3.2/cv3.2.2/Conv:                |                      | 0.906%
+/model.2/m.0/cv2/conv/Conv:                  |                      | 0.843%
+/model.4/m.0/cv2/conv/Conv:                  |                      | 0.787%
+/model.1/conv/Conv:                          |                      | 0.424%
+/model.2/m.0/cv1/conv/Conv:                  |                      | 0.313%
+/model.23/cv3.1/cv3.1.2/Conv:                |                      | 0.130%
+/model.23/cv3.0/cv3.0.2/Conv:                |                      | 0.096%
+/model.0/conv/Conv:                          |                      | 0.074%
+Analysing Layerwise quantization error:: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 89/89 [03:46<00:00,  2.54s/it]
+Layer                                        | NOISE:SIGNAL POWER RATIO
+/model.0/conv/Conv:                          | ████████████████████ | 0.442%
+/model.2/cv2/conv/Conv:                      | █████                | 0.115%
+/model.1/conv/Conv:                          | ███                  | 0.057%
+/model.4/cv1/conv/Conv:                      | ██                   | 0.045%
+/model.2/cv1/conv/Conv:                      | ██                   | 0.037%
+/model.4/cv2/conv/Conv:                      | █                    | 0.027%
+/model.3/conv/Conv:                          | █                    | 0.022%
+/model.4/m.0/cv1/conv/Conv:                  | █                    | 0.019%
+/model.2/m.0/cv2/conv/Conv:                  | █                    | 0.018%
+/model.2/m.0/cv1/conv/Conv:                  | █                    | 0.015%
+/model.4/m.0/cv2/conv/Conv:                  | █                    | 0.013%
+/model.16/cv2/conv/Conv:                     |                      | 0.011%
+/model.10/m/m.0/attn/MatMul:                 |                      | 0.009%
+/model.16/cv1/conv/Conv:                     |                      | 0.007%
+/model.23/cv2.0/cv2.0.0/conv/Conv:           |                      | 0.006%
+/model.9/cv2/conv/Conv:                      |                      | 0.006%
+/model.23/cv2.0/cv2.0.2/Conv:                |                      | 0.005%
+/model.6/cv1/conv/Conv:                      |                      | 0.005%
+/model.16/m.0/cv2/conv/Conv:                 |                      | 0.005%
+/model.23/cv3.2/cv3.2.0/cv3.2.0.0/conv/Conv: |                      | 0.005%
+/model.23/cv2.1/cv2.1.2/Conv:                |                      | 0.004%
+/model.23/cv2.2/cv2.2.2/Conv:                |                      | 0.004%
+/model.10/cv1/conv/Conv:                     |                      | 0.004%
+/model.19/m.0/cv1/conv/Conv:                 |                      | 0.003%
+/model.16/m.0/cv1/conv/Conv:                 |                      | 0.003%
+/model.6/cv2/conv/Conv:                      |                      | 0.003%
+/model.8/cv2/conv/Conv:                      |                      | 0.003%
+/model.23/cv3.1/cv3.1.0/cv3.1.0.0/conv/Conv: |                      | 0.003%
+/model.23/cv3.2/cv3.2.1/cv3.2.1.0/conv/Conv: |                      | 0.003%
+/model.23/cv3.1/cv3.1.1/cv3.1.1.1/conv/Conv: |                      | 0.002%
+/model.23/cv2.0/cv2.0.1/conv/Conv:           |                      | 0.002%
+/model.23/cv3.0/cv3.0.0/cv3.0.0.0/conv/Conv: |                      | 0.002%
+/model.23/cv2.2/cv2.2.1/conv/Conv:           |                      | 0.002%
+/model.23/cv2.1/cv2.1.1/conv/Conv:           |                      | 0.002%
+/model.13/cv2/conv/Conv:                     |                      | 0.002%
+/model.9/cv1/conv/Conv:                      |                      | 0.002%
+/model.13/m.0/cv1/conv/Conv:                 |                      | 0.002%
+/model.23/cv3.2/cv3.2.1/cv3.2.1.1/conv/Conv: |                      | 0.002%
+/model.19/m.0/cv2/conv/Conv:                 |                      | 0.002%
+/model.13/cv1/conv/Conv:                     |                      | 0.001%
+/model.5/conv/Conv:                          |                      | 0.001%
+/model.19/cv1/conv/Conv:                     |                      | 0.001%
+/model.17/conv/Conv:                         |                      | 0.001%
+/model.23/cv3.0/cv3.0.0/cv3.0.0.1/conv/Conv: |                      | 0.001%
+/model.6/m.0/m/m.0/cv1/conv/Conv:            |                      | 0.001%
+/model.22/cv2/conv/Conv:                     |                      | 0.001%
+/model.6/m.0/cv3/conv/Conv:                  |                      | 0.001%
+/model.7/conv/Conv:                          |                      | 0.001%
+/model.10/m/m.0/attn/qkv/conv/Conv:          |                      | 0.001%
+/model.19/cv2/conv/Conv:                     |                      | 0.001%
+/model.6/m.0/m/m.1/cv1/conv/Conv:            |                      | 0.001%
+/model.13/m.0/cv2/conv/Conv:                 |                      | 0.001%
+/model.23/cv2.1/cv2.1.0/conv/Conv:           |                      | 0.001%
+/model.22/m.0/m/m.0/cv1/conv/Conv:           |                      | 0.001%
+/model.8/cv1/conv/Conv:                      |                      | 0.001%
+/model.22/cv1/conv/Conv:                     |                      | 0.000%
+/model.23/cv2.2/cv2.2.0/conv/Conv:           |                      | 0.000%
+/model.23/cv3.2/cv3.2.2/Conv:                |                      | 0.000%
+/model.6/m.0/m/m.0/cv2/conv/Conv:            |                      | 0.000%
+/model.22/m.0/m/m.0/cv2/conv/Conv:           |                      | 0.000%
+/model.10/cv2/conv/Conv:                     |                      | 0.000%
+/model.6/m.0/m/m.1/cv2/conv/Conv:            |                      | 0.000%
+/model.10/m/m.0/attn/MatMul_1:               |                      | 0.000%
+/model.23/cv3.1/cv3.1.1/cv3.1.1.0/conv/Conv: |                      | 0.000%
+/model.23/cv3.1/cv3.1.2/Conv:                |                      | 0.000%
+/model.6/m.0/cv1/conv/Conv:                  |                      | 0.000%
+/model.8/m.0/m/m.1/cv1/conv/Conv:            |                      | 0.000%
+/model.8/m.0/m/m.1/cv2/conv/Conv:            |                      | 0.000%
+/model.20/conv/Conv:                         |                      | 0.000%
+/model.8/m.0/m/m.0/cv2/conv/Conv:            |                      | 0.000%
+/model.8/m.0/cv3/conv/Conv:                  |                      | 0.000%
+/model.22/m.0/cv3/conv/Conv:                 |                      | 0.000%
+/model.23/cv3.0/cv3.0.1/cv3.0.1.1/conv/Conv: |                      | 0.000%
+/model.23/cv3.0/cv3.0.2/Conv:                |                      | 0.000%
+/model.8/m.0/cv1/conv/Conv:                  |                      | 0.000%
+/model.23/cv3.1/cv3.1.0/cv3.1.0.1/conv/Conv: |                      | 0.000%
+/model.23/cv3.2/cv3.2.0/cv3.2.0.1/conv/Conv: |                      | 0.000%
+/model.22/m.0/cv1/conv/Conv:                 |                      | 0.000%
+/model.22/m.0/m/m.1/cv1/conv/Conv:           |                      | 0.000%
+/model.10/m/m.0/ffn/ffn.1/conv/Conv:         |                      | 0.000%
+/model.23/cv3.0/cv3.0.1/cv3.0.1.0/conv/Conv: |                      | 0.000%
+/model.10/m/m.0/attn/pe/conv/Conv:           |                      | 0.000%
+/model.10/m/m.0/attn/proj/conv/Conv:         |                      | 0.000%
+/model.22/m.0/m/m.1/cv2/conv/Conv:           |                      | 0.000%
+/model.8/m.0/m/m.0/cv1/conv/Conv:            |                      | 0.000%
+/model.6/m.0/cv2/conv/Conv:                  |                      | 0.000%
+/model.8/m.0/cv2/conv/Conv:                  |                      | 0.000%
+/model.10/m/m.0/ffn/ffn.0/conv/Conv:         |                      | 0.000%
+/model.22/m.0/cv2/conv/Conv:                 |                      | 0.000%
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip onnx::Split_185 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_0 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_2 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_7 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_8 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip /model.10/m/m.0/attn/Concat_output_0 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip onnx::Split_326 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_11 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip /model.10/m/m.0/attn/Softmax_output_0 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_10 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip  because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_5 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_3 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip  because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_6 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_1 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_4 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_9 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip onnx::Split_185 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_0 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_2 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_7 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_8 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip /model.10/m/m.0/attn/Concat_output_0 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip onnx::Split_326 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_11 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip /model.10/m/m.0/attn/Softmax_output_0 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_10 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip  because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_5 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_3 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip  because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_6 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_1 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_4 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_9 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip onnx::Split_185 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_0 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_2 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_7 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_8 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip /model.10/m/m.0/attn/Concat_output_0 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip onnx::Split_326 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_11 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip /model.10/m/m.0/attn/Softmax_output_0 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_10 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip  because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_5 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_3 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip  because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_6 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_1 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_4 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_9 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip onnx::Split_185 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_0 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  skip not QuantableOperation
+[INFO][ESPDL][2025-09-30 18:14:22]:  skip not QuantableOperation
+[INFO][ESPDL][2025-09-30 18:14:22]:  skip not QuantableOperation
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_2 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  skip not QuantableOperation
+[INFO][ESPDL][2025-09-30 18:14:22]:  skip not QuantableOperation
+[INFO][ESPDL][2025-09-30 18:14:22]:  skip not QuantableOperation
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_7 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  skip not QuantableOperation
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_8 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  skip not QuantableOperation
+[INFO][ESPDL][2025-09-30 18:14:22]:  skip not QuantableOperation
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip /model.10/m/m.0/attn/Concat_output_0 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip onnx::Split_326 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_58 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_11 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_61 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip /model.10/m/m.0/attn/Softmax_output_0 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  skip not QuantableOperation
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_63 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_66 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_10 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip  because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_5 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_3 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip  because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_6 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_1 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  skip not QuantableOperation
+[INFO][ESPDL][2025-09-30 18:14:22]:  skip not QuantableOperation
+[INFO][ESPDL][2025-09-30 18:14:22]:  skip not QuantableOperation
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_4 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  Skip PPQ_Variable_9 because it's not exportable
+[INFO][ESPDL][2025-09-30 18:14:22]:  skip not QuantableOperation
+[INFO][ESPDL][2025-09-30 18:14:22]:  skip not QuantableOperation
+[WARNING][ESPDL][2025-09-30 18:14:22]:  /model.10/m/m.0/attn/Softmax_output_0 does not bind exponents parameter
